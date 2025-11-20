@@ -8,13 +8,10 @@ int main(){
     cout << "Enter the number of slabs: ";
     cin >> n;
     cout << calculateBill(n) << "\n";
-    cout << "Enter absolute value: ";
-    int abs1;
-    cin >> abs1;
-    cout << "Fixed Charge: " << abs1+calculateBill(n) << "\n";
-
-
-
+    //cout << "Enter absolute value: ";
+    int abs1 =100;
+    //cin >> abs1;
+    cout << "Total Bill: " << abs1+calculateBill(n) << "\n";
 }
 
 int calculateBill(int n){
