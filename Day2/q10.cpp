@@ -3,15 +3,17 @@ using namespace std;
 
 
 int checkBalance(int bal);
-int deposit(int bal, int value, int arr[], int index);
-void withdraw(int bal, int value, int arr[]);
-void miniStatement(int arr[]);
+int deposit(int bal, int arr[], int &index, int size);
+int withdraw(int bal, int arr[], int &index, int size);
+void miniStatement(int arr[], int size);
+void leftShiftArray(int arr[], int size);
 
 
 int main(){
-    cout << "welcome to Bank";
+    cout << "welcome to Bank" << "\n";
     int balance = 0;
-    int arr[5];
+    int arr[5] = {0};
+    int size = 5;
     int index = 0;
     while(true){
         char ch;
@@ -25,21 +27,13 @@ int main(){
         switch(ch){
             case 'c': cout << "Balance is: " << checkBalance(balance) << "\n";
             break;
-            case 'd': cout << "Enter the money to Deposite: ";
-            int value;
-            cin >> value;
-            if(index<5){
-                balance = deposit(balance, value, arr, index);
-                index++;
-            }
-            else{
-                index = 0;
-            }
+            case 'd': balance = deposit(balance, arr, index, size);
             cout << "Balance is: " << balance << "\n";
             break;
-            case 'w': cout << "hi";
+            case 'w': balance = withdraw(balance, arr, index, size);
+            cout << "Balance is: " << balance << "\n";
             break;
-            case 'm': miniStatement(arr);
+            case 'm': miniStatement(arr, size);
             break;
             default: cout << "Invalid Operation" << "\n";
         }
@@ -50,25 +44,67 @@ int main(){
 }
 
 int checkBalance(int bal){
-    return 0;
+    return bal;
 }
 
-int deposit(int bal, int value, int arr[], int index){
-    arr[index] = value;
-    return bal+value;
+int deposit(int bal, int arr[], int &index, int size){
+    cout << "Enter the money to Deposite: ";
+    int value;
+    cin >> value;
+    if(index<size){
+        arr[index] = value;
+        bal = bal+value;
+        index++;
+    }
+    else{
+        leftShiftArray(arr, size);
+        arr[size-1] = value;
+        bal = bal+value;
+    }
+
+    return bal;
 }
 
-void withdraw(int bal, int value, int arr[]){
+int withdraw(int bal, int arr[], int &index, int size){
+    cout << "Enter the money to Withdraw: ";
+    int value;
+    cin >> value;
 
+    if(value>bal){
+        cout << "Not Enough Balance" << "\n";
+        return bal;
+    }
+
+    if(index<size){
+        arr[index] = -value;
+        bal = bal-value;
+        index++;
+    }
+    else{
+        leftShiftArray(arr,size);
+        arr[size-1] = -value;
+        bal = bal-value;
+    }
+
+    return bal;
 }
 
-void miniStatement(int arr[]){
-    for(int i=0;i<5;i++){
-        if(arr[i]>=0){
-            cout << arr[i] << "Deposited " << "\n";
+void leftShiftArray(int arr[], int size){
+    for(int i=0;i<size-1;i++){
+        arr[i] = arr[i+1];
+    }
+}
+
+void miniStatement(int arr[], int size){
+    for(int i=0;i<size;i++){
+        if(arr[i]>0){
+            cout << arr[i] << " Deposited " << "\n";
+        }
+        else if(arr[i]==0){
+            continue;
         }
         else{
-            cout << arr[i] << "WithDrawed " << "\n";
+            cout << arr[i]*(-1) << " WithDrawed " << "\n";
         }
     }
 }
