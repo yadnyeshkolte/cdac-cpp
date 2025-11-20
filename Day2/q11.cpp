@@ -67,6 +67,6 @@ bool checkEligibility(int age){
 void printResult(int date, int month, int year, int age){
     cout << date << "-" << month << "-" << year << "\n";
     cout << "Age is: " << age << "\n";
-    cout << checkEligibility(age) ? cout << "Eligible" << "\n" : cout << "Not Eligible" << "\n";
+    cout << (checkEligibility(age) ? "Eligible\n" : "Not Eligible\n");
 }
 
