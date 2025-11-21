@@ -15,19 +15,16 @@ int main(){
 
     int arr1[row1][col1] = {0};
     int arr2[row2][col2] = {0};
-    int r = row1;
-    int c = col2;
-    int arr3[r][c] = {0};
-
-
-    for(int i=0;i<row1;i++){
-        for(int j=0;j<col2;j++){
-            cout << arr3[i][j] << " ";
-        }
-        cout << "\n";
-    }
-
-
+    /*
+    0 32767 -1 0 
+    0 0 0 0           array if     int arr3[row1][col2] = {0};
+    */
+    int arr3[row1][col2] = {0, 0, 0};
+    /*
+    0 0 0 0 
+    0 0 0 0      i dont know why but it is doing work.
+    */
+    
     cout << "Enter the matrix 1: ";
     for(int i=0; i<row1; i++){
         for(int j=0;j<col1;j++){
@@ -47,14 +44,13 @@ int main(){
     for (int i =0; i<row1; i++) {
         for (int j =0; j<col2; j++) {
             for (int k =0; k<col1; k++) {
-                cout << arr3[i][j] + arr1[i][k]*arr2[k][j] << " = " << arr3[i][j] << " + " << arr1[i][k]*arr2[k][j] << "\n";
                 arr3[i][j] = arr3[i][j] + arr1[i][k]*arr2[k][j];
             }
         }
     }
 
-
-
+     //cout << arr3[i][j] + arr1[i][k]*arr2[k][j] << " = " << arr3[i][j] << " + " << arr1[i][k]*arr2[k][j] << "\n";
+     // For Checking only
 
     for(int i=0;i<row1;i++){
         for(int j=0;j<col2;j++){
