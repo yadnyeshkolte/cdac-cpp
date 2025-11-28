@@ -10,7 +10,15 @@ struct employee{
     char department[NAMESIZE];
     double salary;
 } emp[ELECOUNT];
-
+/*
+struct employee{
+    int empID;
+    char empName[NAMESIZE];
+    char empDesig[NAMESIZE];
+    char department[NAMESIZE];
+    double salary;
+} uemp;   uemp 100 bytes
+*/
 struct employee getEmp();
 void displayEmp(struct employee);
 int departmentwiseCount(struct employee e[], char dept[NAMESIZE]);
