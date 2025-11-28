@@ -13,7 +13,7 @@ int main(){
 
 void hanoi(int n, string from, string to, string via) {
 	if(n == 1){
-		cout << "Move disk 1 from " << from << " to " << to << "\n";
+		cout << "Move disk "<< n << " from "<< from << " to " << to << "\n";
 	}
 	else{
 		hanoi(n-1, from, via, to);
@@ -21,3 +21,4 @@ void hanoi(int n, string from, string to, string via) {
 		hanoi(n-1, via, to, from);
 	}
 }
+
